@@ -11,8 +11,3 @@ hooks:
       timeout: 300
       runas: root
 
-      
-  #ApplicationStop:
-    #- location: scripts/stop_container_2.sh
-      #timeout: 300
-      #runas: root
