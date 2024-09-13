@@ -2,9 +2,15 @@
 set -e
 
 # Stop the running container (if any)
-containerid=$(docker ps -q)  # This captures the container ID(s)
-if [ -n "$containerid" ]; then
-    docker rm -f $containerid  # Removes the running container
+echo "Attempting to stop the first running container..."
+
+# Get the ID of the first running container
+containerid=$(docker ps -q | head -n 1)
+
+if [ -z "$containerid" ]; then
+  echo "No running container found. Exiting."
 else
-    echo "No running container found."
+  echo "Container ID found: $containerid. Stopping the container..."
+  docker rm -f $containerid
+  echo "Container stopped successfully."
 fi
